@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package users;
+
+service Users {
+    rpc CreateUser(UserReq) returns (StatusRes) {}
+    rpc MakePremium(PhoneNumReq) returns (MPResponse) {}
+    rpc DeleteUser(PhoneNumReq) returns (StatusRes) {}
+    rpc checkPremium(PhoneNumReq) returns (CheckRes) {}
+}
+
+message User {
+    string phone_number = 1;
+    string firstname = 2;
+    string lastname = 3;
+}
+
+message UserReq {
+    User user = 1;
+}
+
+message CheckRes {
+    bool status = 1;
+    string msg = 2;
+}
+
+message StatusRes {
+    string status = 1;
+}
+
+message PhoneNumReq {
+    string phone_number = 1;
+}
+
+message MPResponse {
+    string status = 1;
+    string firstname = 2;
+    string lastname = 3;
+}
