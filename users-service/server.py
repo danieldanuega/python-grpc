@@ -1,8 +1,8 @@
 from concurrent import futures
 import time
 import grpc
-from config import mongo
-import pymongo
+import pymysql
+from config import conn
 
 import users_pb2_grpc as service
 import users_pb2 as message
@@ -14,45 +14,64 @@ class UsersService(service.UsersServicer):
 
     def CreateUser(self, request, context):
         user = request.user
-        # Implement Insert PyMongo
-        mongo.insert_one(
-            {'phone_number': user.phone_number, 'firstname': user.firstname, 'lastname': user.lastname}
-        )
-        if mongo.find_one({'phone_number': user.phone_number}):
-            return message.StatusRes(status="Successfuly created!")
-        return message.StatusRes(status="Failed to insert user!")
+        
+        try:
+            with conn.cursor() as cursor:
+                sql = "INSERT INTO `user_acc` (`phone_number`,`firstname`,`lastname`) VALUES (%s,%s,%s)"
+                exe = cursor.execute(sql, (user.phone_number, user.firstname, user.lastname))
+                result = message.StatusRes(status=str(exe))
+        except Exception as e:
+            result = message.StatusRes(status=str(e))
+        
+        conn.commit()
+        return result
+
 
     def MakePremium(self, request, context):
-        user = mongo.find_one({'phone_number': request.phone_number})
+        try:
+            with conn.cursor() as cursor:
+                sql = "SELECT `is_premium`, `firstname`, `lastname` FROM `user_acc` WHERE `phone_number`=%s"
+                cursor.execute(sql, (request.phone_number))
+                check = cursor.fetchone()
 
-        if user:
-            mongo.update_one(
-                {'phone_number': request.phone_number}, 
-                {'$set': {'premium': True}}
-            )
-            return message.MPResponse(status="Success!", firstname=user['firstname'], lastname=user['lastname'])
-        else:
-            return message.MPResponse(status="Failed", firstname="NULL", lastname="NULL")
+                if check['is_premium'] == 0:
+                    sql = "UPDATE `user_acc` SET `is_premium`=1 WHERE `phone_number`=%s"
+                    exe = cursor.execute(sql, (request.phone_number))
+                    result = message.MPResponse(status=str(exe), firstname=check['firstname'], lastname=check['lastname'])
+            
+        except Exception as e:
+            result = message.MPResponse(status=str(e), firstname='', lastname='')
+        
+        conn.commit()
+        return result
+            
 
     def DeleteUser(self, request, context):
-        if mongo.find_one({'phone_number': request.phone_number}):
-            mongo.delete_one(
-                {'phone_number': request.phone_number}
-            )
-            return message.StatusRes(status="SSkuuyyy")
-        else:
-            return message.StatusRes(status="No User found")
+        try:
+            with conn.cursor() as cursor:
+                sql = "DELETE FROM `user_acc` WHERE `phone_number`=%s"
+                exe = cursor.execute(sql, (request.phone_number))
+                result = message.StatusRes(status=str(exe)) 
+        except Exception as e:
+            result = message.StatusRes(status=str(e))
+
+        conn.commit()
+        return result
 
     def checkPremium(self, request, context):
-        user = mongo.find_one({'phone_number': request.phone_number})
-        if user:
-            if mongo.find_one({'$and': [{'phone_number': {'$in': [request.phone_number]}}, {'premium': {'$exists': True}}]}):
-                return message.CheckRes(status=True, msg="User is premium")
-            else:
-                return message.CheckRes(status=False, msg="User is not premium")
-        else:
-            return message.CheckRes(status=False, msg="User not found")
+        try:
+            with conn.cursor() as cursor:
+                sql = "SELECT `is_premium` FROM user_acc WHERE `phone_number`=%s"
+                exe = cursor.execute(sql, (request.phone_number))
+                check = cursor.fetchone()
+                if check['is_premium'] == 1:
+                    result = message.CheckRes(status=True, msg=str(exe))
+                elif check['is_premium'] == 0:
+                    result = message.CheckRes(status=False, msg=str(exe))
+        except Exception as e:
+            result = message.CheckRes(status=False, msg=str(e))
 
+        return result
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -69,3 +88,4 @@ def serve():
 if __name__ == '__main__':
     print('Server Start')
     serve()
+    conn.close()

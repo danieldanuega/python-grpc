@@ -4,9 +4,9 @@ package users;
 
 service Users {
     rpc CreateUser(UserReq) returns (StatusRes) {}
-    rpc MakePremium(PhoneNumReq) returns (MPResponse) {}
+    rpc MakePremium(PhoneNumReq) returns (StatusRes) {}
     rpc DeleteUser(PhoneNumReq) returns (StatusRes) {}
-    rpc checkPremium(PhoneNumReq) returns (CheckRes) {}
+    rpc checkPremium(PhoneNumReq) returns (StatusRes) {}
 }
 
 message User {
@@ -19,21 +19,10 @@ message UserReq {
     User user = 1;
 }
 
-message CheckRes {
-    bool status = 1;
-    string msg = 2;
-}
-
 message StatusRes {
     string status = 1;
 }
 
 message PhoneNumReq {
     string phone_number = 1;
-}
-
-message MPResponse {
-    string status = 1;
-    string firstname = 2;
-    string lastname = 3;
 }
