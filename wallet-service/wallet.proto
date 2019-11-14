@@ -3,16 +3,15 @@ syntax = "proto3";
 package wallet;
 
 service Wallet {
-    rpc TopUp(topupReq) returns (statusRes) {}
+    rpc TopUp(TopupReq) returns (StatusRes) {}
 }
 
-message topupReq {
+message TopupReq {
     string phone_number = 1;
     string fromBank = 2;
     int32 amount = 3;
 }
 
-message statusRes {
-    bool status = 1;
-    string msg = 2;
+message StatusRes {
+    string status = 1;
 }

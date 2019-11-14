@@ -16,8 +16,8 @@ class WalletStub(object):
     """
     self.TopUp = channel.unary_unary(
         '/wallet.Wallet/TopUp',
-        request_serializer=wallet__pb2.topupReq.SerializeToString,
-        response_deserializer=wallet__pb2.statusRes.FromString,
+        request_serializer=wallet__pb2.TopupReq.SerializeToString,
+        response_deserializer=wallet__pb2.StatusRes.FromString,
         )
 
 
@@ -37,8 +37,8 @@ def add_WalletServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'TopUp': grpc.unary_unary_rpc_method_handler(
           servicer.TopUp,
-          request_deserializer=wallet__pb2.topupReq.FromString,
-          response_serializer=wallet__pb2.statusRes.SerializeToString,
+          request_deserializer=wallet__pb2.TopupReq.FromString,
+          response_serializer=wallet__pb2.StatusRes.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

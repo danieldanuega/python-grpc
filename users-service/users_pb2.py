@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='users',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0busers.proto\x12\x05users\"A\n\x04User\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x12\x11\n\tfirstname\x18\x02 \x01(\t\x12\x10\n\x08lastname\x18\x03 \x01(\t\"$\n\x07UserReq\x12\x19\n\x04user\x18\x01 \x01(\x0b\x32\x0b.users.User\"\'\n\x08\x43heckRes\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x02 \x01(\t\"\x1b\n\tStatusRes\x12\x0e\n\x06status\x18\x01 \x01(\t\"#\n\x0bPhoneNumReq\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\"A\n\nMPResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\x11\n\tfirstname\x18\x02 \x01(\t\x12\x10\n\x08lastname\x18\x03 \x01(\t2\xde\x01\n\x05Users\x12\x30\n\nCreateUser\x12\x0e.users.UserReq\x1a\x10.users.StatusRes\"\x00\x12\x36\n\x0bMakePremium\x12\x12.users.PhoneNumReq\x1a\x11.users.MPResponse\"\x00\x12\x34\n\nDeleteUser\x12\x12.users.PhoneNumReq\x1a\x10.users.StatusRes\"\x00\x12\x35\n\x0c\x63heckPremium\x12\x12.users.PhoneNumReq\x1a\x0f.users.CheckRes\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0busers.proto\x12\x05users\"A\n\x04User\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x12\x11\n\tfirstname\x18\x02 \x01(\t\x12\x10\n\x08lastname\x18\x03 \x01(\t\"$\n\x07UserReq\x12\x19\n\x04user\x18\x01 \x01(\x0b\x32\x0b.users.User\"\x1b\n\tStatusRes\x12\x0e\n\x06status\x18\x01 \x01(\t\"#\n\x0bPhoneNumReq\x12\x14\n\x0cphone_number\x18\x01 \x01(\t2\xde\x01\n\x05Users\x12\x30\n\nCreateUser\x12\x0e.users.UserReq\x1a\x10.users.StatusRes\"\x00\x12\x35\n\x0bMakePremium\x12\x12.users.PhoneNumReq\x1a\x10.users.StatusRes\"\x00\x12\x34\n\nDeleteUser\x12\x12.users.PhoneNumReq\x1a\x10.users.StatusRes\"\x00\x12\x36\n\x0c\x63heckPremium\x12\x12.users.PhoneNumReq\x1a\x10.users.StatusRes\"\x00\x62\x06proto3')
 )
 
 
@@ -102,44 +102,6 @@ _USERREQ = _descriptor.Descriptor(
 )
 
 
-_CHECKRES = _descriptor.Descriptor(
-  name='CheckRes',
-  full_name='users.CheckRes',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='status', full_name='users.CheckRes.status', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='msg', full_name='users.CheckRes.msg', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=127,
-  serialized_end=166,
-)
-
-
 _STATUSRES = _descriptor.Descriptor(
   name='StatusRes',
   full_name='users.StatusRes',
@@ -166,8 +128,8 @@ _STATUSRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=168,
-  serialized_end=195,
+  serialized_start=127,
+  serialized_end=154,
 )
 
 
@@ -197,62 +159,15 @@ _PHONENUMREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=197,
-  serialized_end=232,
-)
-
-
-_MPRESPONSE = _descriptor.Descriptor(
-  name='MPResponse',
-  full_name='users.MPResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='status', full_name='users.MPResponse.status', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='firstname', full_name='users.MPResponse.firstname', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='lastname', full_name='users.MPResponse.lastname', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=234,
-  serialized_end=299,
+  serialized_start=156,
+  serialized_end=191,
 )
 
 _USERREQ.fields_by_name['user'].message_type = _USER
 DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['UserReq'] = _USERREQ
-DESCRIPTOR.message_types_by_name['CheckRes'] = _CHECKRES
 DESCRIPTOR.message_types_by_name['StatusRes'] = _STATUSRES
 DESCRIPTOR.message_types_by_name['PhoneNumReq'] = _PHONENUMREQ
-DESCRIPTOR.message_types_by_name['MPResponse'] = _MPRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
@@ -269,13 +184,6 @@ UserReq = _reflection.GeneratedProtocolMessageType('UserReq', (_message.Message,
   })
 _sym_db.RegisterMessage(UserReq)
 
-CheckRes = _reflection.GeneratedProtocolMessageType('CheckRes', (_message.Message,), {
-  'DESCRIPTOR' : _CHECKRES,
-  '__module__' : 'users_pb2'
-  # @@protoc_insertion_point(class_scope:users.CheckRes)
-  })
-_sym_db.RegisterMessage(CheckRes)
-
 StatusRes = _reflection.GeneratedProtocolMessageType('StatusRes', (_message.Message,), {
   'DESCRIPTOR' : _STATUSRES,
   '__module__' : 'users_pb2'
@@ -290,13 +198,6 @@ PhoneNumReq = _reflection.GeneratedProtocolMessageType('PhoneNumReq', (_message.
   })
 _sym_db.RegisterMessage(PhoneNumReq)
 
-MPResponse = _reflection.GeneratedProtocolMessageType('MPResponse', (_message.Message,), {
-  'DESCRIPTOR' : _MPRESPONSE,
-  '__module__' : 'users_pb2'
-  # @@protoc_insertion_point(class_scope:users.MPResponse)
-  })
-_sym_db.RegisterMessage(MPResponse)
-
 
 
 _USERS = _descriptor.ServiceDescriptor(
@@ -305,8 +206,8 @@ _USERS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=302,
-  serialized_end=524,
+  serialized_start=194,
+  serialized_end=416,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateUser',
@@ -323,7 +224,7 @@ _USERS = _descriptor.ServiceDescriptor(
     index=1,
     containing_service=None,
     input_type=_PHONENUMREQ,
-    output_type=_MPRESPONSE,
+    output_type=_STATUSRES,
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
@@ -341,7 +242,7 @@ _USERS = _descriptor.ServiceDescriptor(
     index=3,
     containing_service=None,
     input_type=_PHONENUMREQ,
-    output_type=_CHECKRES,
+    output_type=_STATUSRES,
     serialized_options=None,
   ),
 ])

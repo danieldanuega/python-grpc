@@ -22,7 +22,7 @@ class UsersStub(object):
     self.MakePremium = channel.unary_unary(
         '/users.Users/MakePremium',
         request_serializer=users__pb2.PhoneNumReq.SerializeToString,
-        response_deserializer=users__pb2.MPResponse.FromString,
+        response_deserializer=users__pb2.StatusRes.FromString,
         )
     self.DeleteUser = channel.unary_unary(
         '/users.Users/DeleteUser',
@@ -32,7 +32,7 @@ class UsersStub(object):
     self.checkPremium = channel.unary_unary(
         '/users.Users/checkPremium',
         request_serializer=users__pb2.PhoneNumReq.SerializeToString,
-        response_deserializer=users__pb2.CheckRes.FromString,
+        response_deserializer=users__pb2.StatusRes.FromString,
         )
 
 
@@ -79,7 +79,7 @@ def add_UsersServicer_to_server(servicer, server):
       'MakePremium': grpc.unary_unary_rpc_method_handler(
           servicer.MakePremium,
           request_deserializer=users__pb2.PhoneNumReq.FromString,
-          response_serializer=users__pb2.MPResponse.SerializeToString,
+          response_serializer=users__pb2.StatusRes.SerializeToString,
       ),
       'DeleteUser': grpc.unary_unary_rpc_method_handler(
           servicer.DeleteUser,
@@ -89,7 +89,7 @@ def add_UsersServicer_to_server(servicer, server):
       'checkPremium': grpc.unary_unary_rpc_method_handler(
           servicer.checkPremium,
           request_deserializer=users__pb2.PhoneNumReq.FromString,
-          response_serializer=users__pb2.CheckRes.SerializeToString,
+          response_serializer=users__pb2.StatusRes.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

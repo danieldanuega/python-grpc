@@ -20,35 +20,35 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='wallet',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x0cwallet.proto\x12\x06wallet\"B\n\x08topupReq\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x12\x10\n\x08\x66romBank\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\x05\"(\n\tstatusRes\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x0b\n\x03msg\x18\x02 \x01(\t28\n\x06Wallet\x12.\n\x05TopUp\x12\x10.wallet.topupReq\x1a\x11.wallet.statusRes\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0cwallet.proto\x12\x06wallet\"B\n\x08TopupReq\x12\x14\n\x0cphone_number\x18\x01 \x01(\t\x12\x10\n\x08\x66romBank\x18\x02 \x01(\t\x12\x0e\n\x06\x61mount\x18\x03 \x01(\x05\"\x1b\n\tStatusRes\x12\x0e\n\x06status\x18\x01 \x01(\t28\n\x06Wallet\x12.\n\x05TopUp\x12\x10.wallet.TopupReq\x1a\x11.wallet.StatusRes\"\x00\x62\x06proto3')
 )
 
 
 
 
 _TOPUPREQ = _descriptor.Descriptor(
-  name='topupReq',
-  full_name='wallet.topupReq',
+  name='TopupReq',
+  full_name='wallet.TopupReq',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='phone_number', full_name='wallet.topupReq.phone_number', index=0,
+      name='phone_number', full_name='wallet.TopupReq.phone_number', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='fromBank', full_name='wallet.topupReq.fromBank', index=1,
+      name='fromBank', full_name='wallet.TopupReq.fromBank', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='amount', full_name='wallet.topupReq.amount', index=2,
+      name='amount', full_name='wallet.TopupReq.amount', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -72,22 +72,15 @@ _TOPUPREQ = _descriptor.Descriptor(
 
 
 _STATUSRES = _descriptor.Descriptor(
-  name='statusRes',
-  full_name='wallet.statusRes',
+  name='StatusRes',
+  full_name='wallet.StatusRes',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='status', full_name='wallet.statusRes.status', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='msg', full_name='wallet.statusRes.msg', index=1,
-      number=2, type=9, cpp_type=9, label=1,
+      name='status', full_name='wallet.StatusRes.status', index=0,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -105,26 +98,26 @@ _STATUSRES = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=92,
-  serialized_end=132,
+  serialized_end=119,
 )
 
-DESCRIPTOR.message_types_by_name['topupReq'] = _TOPUPREQ
-DESCRIPTOR.message_types_by_name['statusRes'] = _STATUSRES
+DESCRIPTOR.message_types_by_name['TopupReq'] = _TOPUPREQ
+DESCRIPTOR.message_types_by_name['StatusRes'] = _STATUSRES
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-topupReq = _reflection.GeneratedProtocolMessageType('topupReq', (_message.Message,), {
+TopupReq = _reflection.GeneratedProtocolMessageType('TopupReq', (_message.Message,), {
   'DESCRIPTOR' : _TOPUPREQ,
   '__module__' : 'wallet_pb2'
-  # @@protoc_insertion_point(class_scope:wallet.topupReq)
+  # @@protoc_insertion_point(class_scope:wallet.TopupReq)
   })
-_sym_db.RegisterMessage(topupReq)
+_sym_db.RegisterMessage(TopupReq)
 
-statusRes = _reflection.GeneratedProtocolMessageType('statusRes', (_message.Message,), {
+StatusRes = _reflection.GeneratedProtocolMessageType('StatusRes', (_message.Message,), {
   'DESCRIPTOR' : _STATUSRES,
   '__module__' : 'wallet_pb2'
-  # @@protoc_insertion_point(class_scope:wallet.statusRes)
+  # @@protoc_insertion_point(class_scope:wallet.StatusRes)
   })
-_sym_db.RegisterMessage(statusRes)
+_sym_db.RegisterMessage(StatusRes)
 
 
 
@@ -134,8 +127,8 @@ _WALLET = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=134,
-  serialized_end=190,
+  serialized_start=121,
+  serialized_end=177,
   methods=[
   _descriptor.MethodDescriptor(
     name='TopUp',

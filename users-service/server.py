@@ -37,10 +37,10 @@ class UsersService(service.UsersServicer):
                 if check['is_premium'] == 0:
                     sql = "UPDATE `user_acc` SET `is_premium`=1 WHERE `phone_number`=%s"
                     exe = cursor.execute(sql, (request.phone_number))
-                    result = message.MPResponse(status=str(exe), firstname=check['firstname'], lastname=check['lastname'])
+                    result = message.StatusRes(status=str(exe))
             
         except Exception as e:
-            result = message.MPResponse(status=str(e), firstname='', lastname='')
+            result = message.StatusRes(status=str(e))
         
         conn.commit()
         return result
@@ -65,11 +65,11 @@ class UsersService(service.UsersServicer):
                 exe = cursor.execute(sql, (request.phone_number))
                 check = cursor.fetchone()
                 if check['is_premium'] == 1:
-                    result = message.CheckRes(status=True, msg=str(exe))
+                    result = message.StatusRes(status='1')
                 elif check['is_premium'] == 0:
-                    result = message.CheckRes(status=False, msg=str(exe))
+                    result = message.StatusRes(status='0')
         except Exception as e:
-            result = message.CheckRes(status=False, msg=str(e))
+            result = message.StatusRes(status=str(e))
 
         return result
 

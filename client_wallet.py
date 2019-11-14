@@ -13,5 +13,5 @@ class WalletClient():
         self.stub = service.WalletStub(self.channel)
 
     def top_up(self, phone_number, fromBank, amount):
-        req = message.topupReq(phone_number=phone_number, fromBank=fromBank, amount=amount)
+        req = message.TopupReq(phone_number=phone_number, fromBank=fromBank, amount=amount)
         return self.stub.TopUp(req)
